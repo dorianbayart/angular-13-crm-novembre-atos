@@ -6,3 +6,7 @@ Comment importer _theme.scss ?
 @import "~bootstrap/scss/bootstrap";
 @import "./stylings/fonts";
 @import "./stylings/theme";
+
+html, body {
+    height: 100%;
+}
