@@ -3,20 +3,20 @@
 
 ## Module
 
-    ng g module icons
-    ng g module orders --routing
+`ng g module icons`  
+`ng g module orders --routing`
 
 ---
 ## Component
 
-    ng g c page-add-client
-    ng g c icon-close --export
+`ng g c page-add-client`  
+`ng g c icon-close --export`
 
 ---
 ## SCSS
 
     @import "./stylings/fonts"  
-\_fonts.scss <- fichier partiel
+`_fonts.scss` est un fichier partiel
 
 ---
 ## Transclusion
@@ -31,14 +31,14 @@
 
 ### Structurelle
 
-* \*ngIf="maCondition; else autreTemplate
+* if
 
         <span *ngIf="maCondition; else autreTemplate"> text 1 </span>
         <ng-template #autreTemplate>
             <span> text 2 </span>
         </ng-template>
 
-* \*ngIf="maCondition; then firstBlock else otherBlock"
+* if then else
 
         <ng-container *ngIf="maCondition; then firstBlock else otherBlock"></ng-container>
         <ng-template #firstBlock>
@@ -48,7 +48,7 @@
             <span> text 2 </span>
         </ng-template>
 
-* [ngSwitchCase="expression"]
+* switchCase
 
         <ng-container [ngSwitchCase]="expression">
             <ng-content *ngSwitchCase="match_1"> text 1 </ng-content>
@@ -56,12 +56,23 @@
         </ng-container>
 
 ---
-## Binding
+## Event Binding
 
     <span (click)="maMethode()"> button </span>
 
 ---
 ## Routing
 
-    .forRoot
-    .forChild
+Dans le module racine: `.forRoot()`  
+Dans tous les autres modules: `.forChild()`
+  
+Exemple:  
+
+    const routes: Routes = [
+      { path: 'first-component', component: FirstComponent },
+      { path: 'second-component', component: SecondComponent },
+      { path: '',   redirectTo: '/first-component', pathMatch: 'full' }, // redirect to `first-component`
+      { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+    ];
+
+---

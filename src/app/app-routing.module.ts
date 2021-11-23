@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageForgotPasswordComponent } from './login/page-forgot-password/page-forgot-password.component';
+import { PageResetPasswordComponent } from './login/page-reset-password/page-reset-password.component';
+import { PageSignInComponent } from './login/page-sign-in/page-sign-in.component';
+import { PageSignUpComponent } from './login/page-sign-up/page-sign-up.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-found.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+  { path: 'sign-in', component: PageSignInComponent },
+  { path: 'sign-up', component: PageSignUpComponent },
+  { path: 'forgot', component: PageForgotPasswordComponent },
+  { path: 'reset', component: PageResetPasswordComponent },
+  { path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
