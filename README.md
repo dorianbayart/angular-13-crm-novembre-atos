@@ -63,10 +63,10 @@
 ---
 ## Routing
 
-Dans le module racine: `.forRoot()`  
-Dans tous les autres modules: `.forChild()`
+* Dans le module racine: `.forRoot()`  
+* Dans tous les autres modules: `.forChild()`
   
-Exemple:  
+Exemple (racine):  
 
     const routes: Routes = [
       { path: 'first-component', component: FirstComponent },
@@ -74,5 +74,13 @@ Exemple:
       { path: '',   redirectTo: '/first-component', pathMatch: 'full' }, // redirect to `first-component`
       { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
     ];
+
+### Lazy loading
+
+    { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) }
+
+### Preloading
+
+    .forRoot(routes, { preloadingStrategy: PreloadAllModules })
 
 ---

@@ -1,24 +1,35 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { PageForgotPasswordComponent } from './login/page-forgot-password/page-forgot-password.component';
-import { PageResetPasswordComponent } from './login/page-reset-password/page-reset-password.component';
-import { PageSignInComponent } from './login/page-sign-in/page-sign-in.component';
-import { PageSignUpComponent } from './login/page-sign-up/page-sign-up.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found/page-not-found.component';
+import { PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
-  { path: 'sign-in', component: PageSignInComponent },
-  { path: 'sign-up', component: PageSignUpComponent },
-  { path: 'forgot', component: PageForgotPasswordComponent },
-  { path: 'reset', component: PageResetPasswordComponent },
-  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
-  { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule) },
-  { path: '**', loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
+  {
+    path: 'orders',
+    loadChildren: () =>
+      import('./orders/orders.module').then((m) => m.OrdersModule),
+  },
+  {
+    path: 'clients',
+    loadChildren: () =>
+      import('./clients/clients.module').then((m) => m.ClientsModule),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./page-not-found/page-not-found.module').then(
+        (m) => m.PageNotFoundModule
+      ),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private route: Router) {
+    console.log(this.route.config);
+  }
+}
