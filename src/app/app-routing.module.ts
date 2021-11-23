@@ -12,7 +12,9 @@ const routes: Routes = [
   { path: 'sign-up', component: PageSignUpComponent },
   { path: 'forgot', component: PageForgotPasswordComponent },
   { path: 'reset', component: PageResetPasswordComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
+  { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule) },
+  { path: '**', loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
 ];
 
 @NgModule({
