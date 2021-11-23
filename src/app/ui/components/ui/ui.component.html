@@ -4,8 +4,19 @@
     <!-- <ng-content select=".autre-classe"></ng-content> -->
     <!-- <button (click)="toggle()" >open/close</button> -->
     <span (click)="toggle()">
-        <ng-content select=".tr-button"></ng-content>
+
+        <!-- <ng-content *ngIf="open" select=".tr-button-close"></ng-content>
+        <ng-content *ngIf="!open" select=".tr-button-nav"></ng-content> -->
+        <ng-content *ngIf="open; else otherBlock" select=".tr-button-close"></ng-content>
+        <ng-template #otherBlock>
+            <ng-content select=".tr-button-nav"></ng-content>
+        </ng-template>
+
     </span>
+
+    <!-- <span *ngIf="open">
+        Ouvert
+    </span> -->
 </header>
 <!-- ajouter ou enlever la class close-aside -->
 <main [ngClass]="{'close-aside' : !open}">
