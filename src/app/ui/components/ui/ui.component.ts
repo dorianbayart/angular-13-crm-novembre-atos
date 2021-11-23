@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiComponent implements OnInit {
 
+  isClosed: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleNav(): void {
+    this.isClosed = !this.isClosed;
   }
 
 }

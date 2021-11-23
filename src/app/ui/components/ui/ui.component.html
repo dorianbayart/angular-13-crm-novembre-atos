@@ -1,8 +1,11 @@
 <header class="fixed-top">
+  <span (click)="toggleNav()" class="nav-button-container">
+    <ng-content select=".tr-nav-button"></ng-content>
+  </span>
   Header
   <ng-content select=".tr-header"></ng-content>
 </header>
-<main>
+<main [ngClass]="{ 'close-aside': isClosed }">
   <div class="shadow position-fixed">
   </div>
   <aside>
