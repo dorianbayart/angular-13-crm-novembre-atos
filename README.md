@@ -83,4 +83,8 @@ Exemple (racine):
 
     .forRoot(routes, { preloadingStrategy: PreloadAllModules })
 
+### RouterLink - RouterLinkActive
+
+    <a routerLink="orders" routerLinkActive="active" class="nav-link">Orders</a>
+
 ---
