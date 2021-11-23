@@ -2,8 +2,14 @@
     Header
     <ng-content select=".tr-header"></ng-content>
     <!-- <ng-content select=".autre-classe"></ng-content> -->
+    <!-- <button (click)="toggle()" >open/close</button> -->
+    <span (click)="toggle()">
+        <ng-content select=".tr-button"></ng-content>
+    </span>
 </header>
-<main>
+<!-- ajouter ou enlever la class close-aside -->
+<main [ngClass]="{'close-aside' : !open}">
+
     <div class="shadow position-fixed">
     </div>
     <aside>
@@ -22,3 +28,4 @@
         </footer>
     </div>
 </main>
+<!-- (click)="methode()" -->
