@@ -1,11 +1,11 @@
 <header class="fixed-top">
-  <span  (click)="toggleNav()" class="nav-button-container">
+  <span (click)="toggleNav()" class="nav-button-container">
     <ng-container *ngIf="isClosed; then templateClosed else templateOpened"></ng-container>
     <ng-template #templateClosed>
-      <ng-content select=".tr-nav-button-closed"></ng-content>
+      <ng-content select=".tr-nav-button-nav"></ng-content>
     </ng-template>
     <ng-template #templateOpened>
-      <ng-content select=".tr-nav-button-opened"></ng-content>
+      <ng-content select=".tr-nav-button-close"></ng-content>
     </ng-template>
   </span>
 
@@ -28,6 +28,17 @@
     <footer>
       Footer
       <ng-content select=".tr-footer"></ng-content>
+
+      <span class="button" (click)="increment()">+1</span>
+
+      <ng-container [ngSwitch]="iconIncrement">
+        <ng-content *ngSwitchCase="0" select=".tr-button-nav"></ng-content>
+        <ng-content *ngSwitchCase="1" select=".tr-button-delete"></ng-content>
+        <ng-content *ngSwitchCase="2" select=".tr-button-edit"></ng-content>
+        <ng-content *ngSwitchCase="3" select=".tr-button-close"></ng-content>
+        <ng-content *ngSwitchDefault select=".tr-button-nav"></ng-content>
+      </ng-container>
+
     </footer>
   </div>
 </main>

@@ -48,11 +48,20 @@
             <span> text 2 </span>
         </ng-template>
 
-* \*ngSwitchCase=""
+* [ngSwitchCase="expression"]
 
-        <span *ngSwitchCase=""></span>
+        <ng-container [ngSwitchCase]="expression">
+            <ng-content *ngSwitchCase="match_1"> text 1 </ng-content>
+            <ng-content *ngSwitchCase="match_2"> text 2 </ng-content>
+        </ng-container>
 
 ---
 ## Binding
 
     <span (click)="maMethode()"> button </span>
+
+---
+## Routing
+
+    .forRoot
+    .forChild
