@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiComponent implements OnInit {
   public open : boolean  = false;
+  /**
+   * Experimentation TP NgSwitchCase
+   */
+  public cpt: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,5 +21,15 @@ export class UiComponent implements OnInit {
     this.open = !this.open;
     console.log('La valeur de la prop est : ', this.open);
     
+  }
+
+  /**
+   * Experimentation TP NgSwitchCase
+   */
+  public increment(): void {
+    this.cpt++;
+    if(this.cpt >3) {
+      this.cpt = 0;
+    }
   }
 }

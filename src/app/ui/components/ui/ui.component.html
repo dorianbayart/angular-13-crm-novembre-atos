@@ -24,7 +24,6 @@
         <ng-template #otherBlock>
             <ng-content select=".tr-button-nav"></ng-content>
         </ng-template>
-
     </span>
 
     <!-- <span *ngIf="open">
@@ -49,6 +48,22 @@
         <footer>
             Footer
             <ng-content select=".tr-footer"></ng-content>
+        <!-- 
+            ng switch case
+            0 icon-nav
+            1 icon-delete
+            2 icon-edit
+            3 icon-close
+            Experimention tp ngSwitchCase
+         -->
+        <!-- <button (click)="increment()">Increment !</button>
+        <ng-container [ngSwitch]="cpt">
+            <ng-content *ngSwitchCase="0" select=".tr-nav2"></ng-content>
+            <ng-content *ngSwitchCase="1" select=".tr-close2"></ng-content>
+            <ng-content *ngSwitchCase="2" select=".tr-delete"></ng-content>
+            <ng-content *ngSwitchCase="3" select=".tr-edit"></ng-content>
+        </ng-container> -->
+
         </footer>
     </div>
 </main>
