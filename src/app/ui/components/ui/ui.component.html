@@ -1,7 +1,14 @@
 <header class="fixed-top">
-  <span (click)="toggleNav()" class="nav-button-container">
-    <ng-content select=".tr-nav-button"></ng-content>
+  <span  (click)="toggleNav()" class="nav-button-container">
+    <ng-container *ngIf="isClosed; then templateClosed else templateOpened"></ng-container>
+    <ng-template #templateClosed>
+      <ng-content select=".tr-nav-button-closed"></ng-content>
+    </ng-template>
+    <ng-template #templateOpened>
+      <ng-content select=".tr-nav-button-opened"></ng-content>
+    </ng-template>
   </span>
+
   Header
   <ng-content select=".tr-header"></ng-content>
 </header>

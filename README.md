@@ -1,27 +1,58 @@
-# AngularCrmNovembreAtos
+# Notes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
-## Development server
+## Module
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    ng g module icons
+    ng g module orders --routing
 
-## Code scaffolding
+---
+## Component
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    ng g c page-add-client
+    ng g c icon-close --export
 
-## Build
+---
+## SCSS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    @import "./stylings/fonts"  
+\_fonts.scss <- fichier partiel
 
-## Running unit tests
+---
+## Transclusion
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    <ng-content select="selector">
 
-## Running end-to-end tests
+---
+## Directives
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    [ngClass]="{ 'ma-classe':maVariable }"
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Structurelle
+
+* \*ngIf="maCondition; else autreTemplate
+
+        <span *ngIf="maCondition; else autreTemplate"> text 1 </span>
+        <ng-template #autreTemplate>
+            <span> text 2 </span>
+        </ng-template>
+
+* \*ngIf="maCondition; then firstBlock else otherBlock"
+
+        <ng-container *ngIf="maCondition; then firstBlock else otherBlock"></ng-container>
+        <ng-template #firstBlock>
+            <span> text 1 </span>
+        </ng-template>
+        <ng-template #autreTemplate>
+            <span> text 2 </span>
+        </ng-template>
+
+* \*ngSwitchCase=""
+
+        <span *ngSwitchCase=""></span>
+
+---
+## Binding
+
+    <span (click)="maMethode()"> button </span>
