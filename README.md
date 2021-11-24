@@ -107,3 +107,17 @@ Exemple (racine):
         error: (e) => console.error(e),
         complete: () => console.info('complete'),
     });
+
+## Subject
+
+    sub = new Subject<string>();  
+    this.sub.subscribe(data => console.log('Subj 1: ', data));  
+    this.sub.subscribe(data => console.log('Subj 2: ', data));  
+    this.sub.next('notif');
+
+## BehaviorSubject
+
+    bSub = new BehaviorSubject(123);  
+    this.bSub.subscribe((data) => console.log('BehaviorSubj 1: ', data));  
+    this.bSub.subscribe((data) => console.log('BehaviorSubj 2: ', data));  
+    this.bSub.next(456);
