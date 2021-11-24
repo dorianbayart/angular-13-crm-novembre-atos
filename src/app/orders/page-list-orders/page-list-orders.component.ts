@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Order } from 'src/app/core/models/order';
 import { OrderService } from '../services/order.service';
 
 @Component({
@@ -8,13 +9,17 @@ import { OrderService } from '../services/order.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public titrePage!:  string;
+  public collection!: Order[];
+  public headers: string[];
 
   constructor(private orderService: OrderService) {
     console.log('Page List ---New Instance');
     this.titrePage = 'List Order';
+    this.headers = ["Client","TjmHt","NbJours","Tva","Type","State"];
+    
     this.orderService.collection$.subscribe( 
       {
-        next: (data) => console.log(data),
+        next: (data) => {this.collection = data},
         error: (err) => console.error(err),
         complete: () => console.info('Le traitement est terminé')
       }
