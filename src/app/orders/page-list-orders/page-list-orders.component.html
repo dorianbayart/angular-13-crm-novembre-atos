@@ -1,10 +1,23 @@
 <!-- <app-template-full-width></app-template-full-width> -->
 <!-- <app-template-full-width titreAttribut="{{titrePage}}"> -->
 <app-template-full-width [titreAttribut]="titrePage">
-    <app-table-light 
-        *ngIf="collection" 
-        [headers]="headers" 
-        [data]="collection">
+    <app-table-light *ngIf="collection" [headers]="headers">
+        <tr *ngFor="let item of collection" >
+            <td> {{item.client}} </td>
+            <td> {{item.tjmHt}} </td>
+            <td> {{item.nbJours}} </td>
+            <td> {{item.tva}} </td>
+            <td> {{item.typePresta}} </td>
+            <td> {{item.state}} </td>
+        </tr>
     </app-table-light>
     <app-btn></app-btn>
 </app-template-full-width>
+
+<!-- <table>
+    <tbody>
+        <tr *ngFor="let item of collection">
+            <td *ngFor="let val of item | keyvalue">{{val.value}}</td>
+        </tr>
+    </tbody>
+</table> -->
