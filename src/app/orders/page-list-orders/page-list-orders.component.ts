@@ -8,30 +8,25 @@ import { OrdersService } from '../services/orders.service';
   templateUrl: './page-list-orders.component.html',
   styleUrls: ['./page-list-orders.component.scss'],
 })
-export class PageListOrdersComponent implements OnInit, OnChanges, OnDestroy {
+export class PageListOrdersComponent implements OnInit {
   titrePage!: string;
+  collection!: Order[];
+  headers: string[];
 
   constructor(private ordersService: OrdersService) {
     this.titrePage = 'List Order';
+    this.headers = ['Client', 'TjmHt', 'NbJours', 'Tva', 'Type', 'State'];
 
     this.ordersService.collection$.subscribe({
-      next: (orders) => console.log(orders),
+      next: (orders) => {
+        this.collection = orders;
+      },
       error: (e) => console.error('PageListError', e),
       complete: () => console.info('Complete'),
     });
   }
 
-  ngOnInit(): void {
-    console.log('PageList --- onInit');
-  }
-
-  ngOnChanges(): void {
-    console.log('PageList --- onChanges');
-  }
-
-  ngOnDestroy(): void {
-    console.log('PageList --- onDestroy');
-  }
+  ngOnInit(): void {}
 
   changeTitle(): void {
     this.titrePage = Math.random().toString();

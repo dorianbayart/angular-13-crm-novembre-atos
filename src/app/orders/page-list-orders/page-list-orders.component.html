@@ -1,5 +1,4 @@
 <app-template-full-width [titreAttribut]="titrePage">
-  <div>
-    <button (click)="changeTitle()">Changer titre</button>
-  </div>
+  <app-table-light *ngIf=[collection] [headers]="headers" [data]="collection"></app-table-light>
+  <app-btn></app-btn>
 </app-template-full-width>
