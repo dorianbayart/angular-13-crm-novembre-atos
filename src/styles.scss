@@ -3,6 +3,11 @@
 @import "./stylings/fonts";
 @import "./stylings/theme";
 
-html, body {
+html,
+body {
   height: 100%;
+}
+
+* {
+  transition: 500ms all ease-in-out;
 }

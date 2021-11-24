@@ -3,16 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TemplatesModule } from '../templates/templates.module';
 import { IconsModule } from '../icons/icons.module';
 
-
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    TemplatesModule,
-    IconsModule
-  ]
+  imports: [CommonModule],
+  exports: [TemplatesModule, IconsModule],
 })
-export class SharedModule { }
+export class SharedModule {}

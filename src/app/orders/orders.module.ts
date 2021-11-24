@@ -7,17 +7,12 @@ import { PageAddOrderComponent } from './page-add-order/page-add-order.component
 import { PageEditOrderComponent } from './page-edit-order/page-edit-order.component';
 import { SharedModule } from '../shared/shared.module';
 
-
 @NgModule({
   declarations: [
     PageListOrdersComponent,
     PageAddOrderComponent,
-    PageEditOrderComponent
+    PageEditOrderComponent,
   ],
-  imports: [
-    CommonModule,
-    OrdersRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, OrdersRoutingModule, SharedModule],
 })
-export class OrdersModule { }
+export class OrdersModule {}
