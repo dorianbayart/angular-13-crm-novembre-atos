@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VersionService } from '../../services/version.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   public prenomAlea : string = 'Choix aléa';
-  constructor() { }
+  public numVersion!: number;
+
+  constructor(private versionService: VersionService) {
+    this.versionService.getBehaveNumVersion().subscribe(numVersion => this.numVersion = numVersion)
+   }
 
   ngOnInit(): void {
     const tabPrenom = ['Amal', 'Alexandre', 'Zied', 'Erwan', 'Thomas', 'Paul', 'Grégory', 'Dorian'];

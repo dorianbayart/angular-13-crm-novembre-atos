@@ -6,7 +6,7 @@ import { Component, DoCheck, Input, OnChanges, OnDestroy, OnInit } from '@angula
   styleUrls: ['./template-full-width.component.scss']
 })
 export class TemplateFullWidthComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
-  @Input('titreAttribut') public title!: {name: string};
+  @Input('titreAttribut') public title!:  string;
   constructor() {
     console.log('Template Full W ---New Instance');
   }
