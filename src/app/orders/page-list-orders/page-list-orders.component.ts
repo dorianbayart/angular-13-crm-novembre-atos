@@ -18,7 +18,7 @@ export class PageListOrdersComponent implements OnInit {
         complete: () => console.info('Le traitement est terminé')
       }
     );
-   }
+  }
 
   ngOnInit(): void {
   
