@@ -8,7 +8,6 @@ import { Order } from 'src/app/core/models/order';
 })
 export class TableLightComponent implements OnInit {
   @Input() headers!: string[];
-  @Input() data!: Order[];
 
   constructor() {}
 
