@@ -121,3 +121,17 @@ Exemple (racine):
     this.bSub.subscribe((data) => console.log('BehaviorSubj 1: ', data));  
     this.bSub.subscribe((data) => console.log('BehaviorSubj 2: ', data));  
     this.bSub.next(456);
+
+## Decorators
+
+    @Input('propertyName') title: string;  
+
+## Lifecycle hooks
+
+    ngOnInit()  
+    ngOnChanges()
+    ngDoCheck()  
+    ngOnDestroy()
+
+
+
