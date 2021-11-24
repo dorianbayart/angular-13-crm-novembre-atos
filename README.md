@@ -20,6 +20,11 @@
 `ng g class order`
 
 ---
+## Service
+
+`ng g service orders`
+
+---
 ## SCSS
 
     @import "./stylings/fonts"  
@@ -95,3 +100,10 @@ Exemple (racine):
     <a routerLink="orders" routerLinkActive="active" class="nav-link">Orders</a>
 
 ---
+## Observable
+
+    .subscribe({
+        next: (v) => console.log(v),
+        error: (e) => console.error(e),
+        complete: () => console.info('complete'),
+    });
