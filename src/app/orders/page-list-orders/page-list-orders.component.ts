@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-page-list-orders',
@@ -9,23 +10,18 @@ import { Order } from 'src/app/core/models/order';
 })
 export class PageListOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrderService) {
+    this.orderService.collection$.subscribe( 
+      {
+        next: (data) => console.log(data),
+        error: (err) => console.error(err),
+        complete: () => console.info('Le traitement est terminé')
+      }
+    );
+   }
 
   ngOnInit(): void {
-    const test1 = new Order();
-    console.log(test1);
-
-    let test2 = new Order({
-      tjmHt : 1200,
-      nbJours : 1,
-      tva : 20,
-      state : StateOrder.OPTION,
-      typePresta: 'Formation',
-      client: 'Cap',
-      comment: 'idjeijde',
-      id: 0
-    })
-    console.log(test2);
+  
   }
 
 }

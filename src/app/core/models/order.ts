@@ -16,11 +16,4 @@ export class Order implements OrderI {
             Object.assign(this, obj)
         }
     }
-
-    /**
-     * method(param1: string, param2?: string){}
-     * method('hello');
-     * method('hello', 'Chuck');
-     */
-
 }
