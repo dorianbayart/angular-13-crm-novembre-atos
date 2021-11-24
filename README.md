@@ -13,6 +13,13 @@
 `ng g c icon-close --export`
 
 ---
+## Enum - Interface - Model
+
+`ng g enum state-order`  
+`ng g interface order-i`  
+`ng g class order`
+
+---
 ## SCSS
 
     @import "./stylings/fonts"  
