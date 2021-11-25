@@ -25,6 +25,11 @@
 `ng g service orders`
 
 ---
+## Pipe
+
+`ng g pipe total --export`
+
+---
 ## SCSS
 
     @import "./stylings/fonts"  
