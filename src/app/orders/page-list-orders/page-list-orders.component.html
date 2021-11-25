@@ -2,13 +2,21 @@
   <app-table-light [headers]="headers">
     <tr *ngFor="let item of collection">
       <td>{{ item.client }}</td>
-      <td>{{ item.tjmHt }}</td>
+      <td>{{ item.tjmHt | currency }}</td>
       <td>{{ item.nbJours }}</td>
-      <td>{{ item.tva }}</td>
-      <td>{{ item | total }}</td>
-      <td>{{ item | total : true }}</td>
+      <td>{{ item.tva }}%</td>
+      <td>{{ item | total | currency }}</td>
+      <td>{{ item | total : true | currency }}</td>
       <td>{{ item.typePresta }}</td>
-      <td>{{ item.state }}</td>
+      <td>
+        <select (change)="onChangeUpdateState(item, $event)">
+          <option
+            *ngFor="let state of stateOrder | keyvalue"
+            [value]="state.value"
+            [selected]="state.value === item.state"
+          >{{ state.value }}</option>
+        </select>
+      </td>
     </tr>
   </app-table-light>
   <app-btn></app-btn>

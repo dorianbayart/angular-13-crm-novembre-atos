@@ -18,4 +18,8 @@ export class OrdersService {
       })
     );
   }
+
+  update(order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.url}/orders/${order.id}`, order);
+  }
 }

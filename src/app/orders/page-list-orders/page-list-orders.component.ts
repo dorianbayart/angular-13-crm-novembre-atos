@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../services/orders.service';
 
@@ -12,8 +13,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   titrePage!: string;
   collection$!: Observable<Order[]>;
   headers: string[];
-
-  private subscription!: Subscription;
+  stateOrder = StateOrder;
 
   constructor(private ordersService: OrdersService) {
     this.titrePage = 'List Order';
@@ -29,14 +29,6 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
     ];
 
     this.collection$ = this.ordersService.collection$;
-
-    /*this.ordersService.collection$.subscribe({
-      next: (orders) => {
-        this.collection = orders;
-      },
-      error: (e) => console.error('PageListError', e),
-      complete: () => console.info('Complete'),
-    });*/
   }
 
   ngOnInit(): void {}
@@ -45,5 +37,11 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
 
   changeTitle(): void {
     this.titrePage = Math.random().toString();
+  }
+
+  onChangeUpdateState(item: Order, event: any): void {
+    this.ordersService
+      .update({ ...item, state: event.target.value } as Order)
+      .subscribe((updatedOrder) => (item.state = updatedOrder.state));
   }
 }
