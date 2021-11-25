@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Order } from 'src/app/core/models/order';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-page-add-order',
@@ -8,11 +10,22 @@ import { Order } from 'src/app/core/models/order';
 })
 export class PageAddOrderComponent implements OnInit {
   public initOrder: Order;
-  constructor() {
+
+  constructor(
+    private orderService: OrderService,
+    private router: Router
+  ) {
     this.initOrder = new Order();
    }
 
   ngOnInit(): void {
+  }
+
+  public onSubmitNewOrder(form: Order): void {
+    console.log(form);
+    this.orderService.add(form).subscribe(() => {
+      this.router.navigate(['orders']);
+    })
   }
 
 }
