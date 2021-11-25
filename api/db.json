@@ -69,6 +69,16 @@
       "client": null,
       "comment": null,
       "id": 7
+    },
+    {
+      "tjmHt": 1200,
+      "nbJours": 1,
+      "tva": 20,
+      "state": "OPTION",
+      "typePresta": "deae",
+      "client": "dead",
+      "comment": null,
+      "id": 8
     }
   ],
   "clients": [
