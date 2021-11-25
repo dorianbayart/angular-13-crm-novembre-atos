@@ -8,7 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TemplateContainerComponent implements OnInit {
   @Input() title!: string;
 
-  constructor() {}
+  constructor() {
+    this.title = 'Le super titre'
+  }
 
   ngOnInit(): void {}
 }
