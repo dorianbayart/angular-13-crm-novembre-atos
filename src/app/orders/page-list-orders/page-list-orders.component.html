@@ -1,5 +1,3 @@
-<!-- <app-template-full-width></app-template-full-width> -->
-<!-- <app-template-full-width titreAttribut="{{titrePage}}"> -->
 <app-template-full-width *ngIf="collection$ | async as collection" [titreAttribut]="titrePage">
     <app-table-light [headers]="headers">
         <tr *ngFor="let item of collection">
@@ -10,10 +8,6 @@
             <td> {{ item | total | currency }} </td>
             <td> {{ item | total : true | currency }} </td>
             <td> {{ item.typePresta }} </td>
-            <!-- <td [ngClass]="{
-                'state-canceled': item.state === 'CANCELED',
-                'state-option': item.state === 'OPTION',
-                'state-confirmed': item.state === 'CONFIRMED'}"> -->
             <td [appState]="item.state">
                 <select (change)="onChangeUpdateState(item, $event)">
                     <option 
@@ -25,13 +19,5 @@
             </td>
         </tr>
     </app-table-light>
-    <app-btn></app-btn>
+    <app-btn label="Add Order" route="add"></app-btn>
 </app-template-full-width>
-
-<!-- <table>
-    <tbody>
-        <tr *ngFor="let item of collection">
-            <td *ngFor="let val of item | keyvalue">{{val.value}}</td>
-        </tr>
-    </tbody>
-</table> -->

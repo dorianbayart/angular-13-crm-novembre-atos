@@ -15,7 +15,6 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   public stateOrder = StateOrder;
   
   public collection$!: Observable<Order[]>;
-  private subscription!: Subscription;
 
   constructor(
     private orderService: OrderService) {
@@ -31,7 +30,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // Unsubscribe de nos flux de données provenant d'observables chaud
-    this.subscription.unsubscribe();
+
   } 
 
   onChangeUpdateState(item: Order, event: any): void {
