@@ -1,7 +1,7 @@
-import { Component,OnChanges,OnDestroy,OnInit } from '@angular/core';
+import { Component,OnDestroy,OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
-import { VersionService } from 'src/app/core/services/version.service';
 import { OrderService } from '../services/order.service';
 
 @Component({
@@ -11,41 +11,22 @@ import { OrderService } from '../services/order.service';
 })
 export class PageListOrdersComponent implements OnInit, OnDestroy {
   public titrePage!:  string;
-  // public collection!: Order[];
-  public collection$!: Observable<Order[]>;
   public headers: string[];
-
+  public stateOrder = StateOrder;
+  
+  public collection$!: Observable<Order[]>;
   private subscription!: Subscription;
 
   constructor(
-    private orderService: OrderService,
-    private versionService: VersionService
-  ) {
+    private orderService: OrderService) {
     console.log('Page List ---New Instance');
     this.titrePage = 'List Order';
-    this.headers = ["Client","TjmHt","NbJours","Tva", "TotalHT", "TotalTTC", "Type","State"];
+    this.headers = ["Client","TjmHt","NbJours","Tva", "TotalHT", "TotalTTC", "Type","State", ''];
 
     this.collection$ = this.orderService.collection$;
-
-    // this.orderService.collection$.subscribe( 
-    //   {
-    //     next: (data) => {
-    //       console.log(data);
-          
-    //       this.collection = data
-    //     },
-    //     error: (err) => console.error(err),
-    //     complete: () => console.info('Le traitement est terminé')
-    //   }
-    // );
-
-    this.subscription = this.versionService.getBehaveNumVersion().subscribe(
-      (data) => console.log('****Behav : ',data )
-    )
   }
 
   ngOnInit(): void {
-
   }
 
   ngOnDestroy(): void {
@@ -53,12 +34,12 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   } 
 
-  // public total(val: number, coef: number, tva?: number): number {
-  //   console.log('*****Call Method total')
-  //   if(tva) {
-  //     return val * coef * (1 + tva / 100);
-  //   }
-  //   return val * coef;
-  // }
-
+  onChangeUpdateState(item: Order, event: any): void {
+    item.state = event.target.value;
+    this.orderService.update(item).subscribe(
+      (updatedOrder) => {
+        item.state = updatedOrder.state;
+      }
+    );
+  }
 }

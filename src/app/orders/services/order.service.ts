@@ -21,4 +21,9 @@ export class OrderService {
       })
     );
   }
+
+  public update(order: Order): Observable<Order> {
+    // Méthode PUT : url/idObject + object
+    return this.http.put<Order>(`${this.url}/orders/${order.id}`, order)
+  }
 }
