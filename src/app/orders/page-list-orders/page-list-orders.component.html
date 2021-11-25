@@ -10,7 +10,11 @@
             <td> {{ item | total | currency }} </td>
             <td> {{ item | total : true | currency }} </td>
             <td> {{ item.typePresta }} </td>
-            <td>
+            <!-- <td [ngClass]="{
+                'state-canceled': item.state === 'CANCELED',
+                'state-option': item.state === 'OPTION',
+                'state-confirmed': item.state === 'CONFIRMED'}"> -->
+            <td [appState]="item.state">
                 <select (change)="onChangeUpdateState(item, $event)">
                     <option 
                         *ngFor="let state of stateOrder | keyvalue"
@@ -18,9 +22,6 @@
                         [selected]="state.value === item.state"
                     >{{ state.value }}</option>
                 </select>
-            </td>
-            <td>
-                {{ item | json}}
             </td>
         </tr>
     </app-table-light>
