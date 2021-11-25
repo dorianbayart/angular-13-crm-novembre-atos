@@ -8,7 +8,7 @@
       <td>{{ item | total | currency }}</td>
       <td>{{ item | total : true | currency }}</td>
       <td>{{ item.typePresta }}</td>
-      <td>
+      <td [appState]="item.state">
         <select (change)="onChangeUpdateState(item, $event)">
           <option
             *ngFor="let state of stateOrder | keyvalue"
