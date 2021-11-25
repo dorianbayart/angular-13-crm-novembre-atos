@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -10,6 +10,7 @@ import { Order } from 'src/app/core/models/order';
 })
 export class FormOrderComponent implements OnInit {
   @Input() init!: Order;
+  @Output() submitCustom = new EventEmitter<Order>();
 
   states = StateOrder;
   form!: FormGroup;
@@ -27,5 +28,9 @@ export class FormOrderComponent implements OnInit {
       comment: [this.init.comment],
       id: [],
     });
+  }
+
+  onSubmit(): void {
+    this.submitCustom.emit(this.form.value);
   }
 }
