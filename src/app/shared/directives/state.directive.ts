@@ -10,7 +10,6 @@ export class StateDirective implements OnChanges {
   constructor() {}
 
   ngOnChanges(): void {
-    console.log('directive', this.state);
     this.elementClass = `state-${this.state.toLowerCase()}`;
   }
 }
