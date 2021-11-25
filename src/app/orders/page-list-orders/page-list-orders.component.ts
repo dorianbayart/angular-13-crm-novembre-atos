@@ -1,4 +1,5 @@
 import { Component,OnDestroy,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -17,10 +18,12 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   public collection$!: Observable<Order[]>;
 
   constructor(
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    private router: Router
+  ) {
     console.log('Page List ---New Instance');
     this.titrePage = 'List Order';
-    this.headers = ["Client","TjmHt","NbJours","Tva", "TotalHT", "TotalTTC", "Type","State", ''];
+    this.headers = ['', "Client","TjmHt","NbJours","Tva", "TotalHT", "TotalTTC", "Type","State"];
 
     this.collection$ = this.orderService.collection$;
   }
@@ -40,5 +43,10 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
         item.state = updatedOrder.state;
       }
     );
+  }
+
+  public onClickGoEdit(orderId: number): void {
+    this.router.navigate(['orders', 'edit', orderId]);
+    // /orders/edit/{{id}}
   }
 }

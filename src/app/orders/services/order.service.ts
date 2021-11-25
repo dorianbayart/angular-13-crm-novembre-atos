@@ -30,4 +30,8 @@ export class OrderService {
   public add(order: Order): Observable<Order> {
     return this.http.post<Order>(`${this.url}/orders`, order)
   }
+
+  public getById(orderId: number): Observable<Order> {
+    return this.http.get<Order>(`${this.url}/orders/${orderId}`)
+  }
 }
