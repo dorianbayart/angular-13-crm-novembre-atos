@@ -8,12 +8,12 @@ import { PageListOrdersComponent } from './page-list-orders/page-list-orders.com
 const routes: Routes = [
   { path: '', component: PageListOrdersComponent },
   { path: 'add', component: PageAddOrderComponent },
-  { path: 'edit', component: PageEditOrderComponent },
+  { path: 'edit/:orderId', component: PageEditOrderComponent },
   { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class OrdersRoutingModule { }
+export class OrdersRoutingModule {}

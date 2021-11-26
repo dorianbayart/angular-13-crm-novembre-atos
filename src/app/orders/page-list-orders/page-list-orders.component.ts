@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
@@ -15,9 +17,10 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   headers: string[];
   stateOrder = StateOrder;
 
-  constructor(private ordersService: OrdersService) {
+  constructor(private ordersService: OrdersService, private router: Router) {
     this.titrePage = 'List Order';
     this.headers = [
+      'Action',
       'Client',
       'TjmHt',
       'NbJours',
@@ -39,9 +42,17 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
     this.titrePage = Math.random().toString();
   }
 
+  onClicGoEdit(orderId: number): void {
+    this.router.navigate(['orders', 'edit', orderId]);
+  }
+
   onChangeUpdateState(item: Order, event: any): void {
     this.ordersService
       .update({ ...item, state: event.target.value } as Order)
       .subscribe((updatedOrder) => (item.state = updatedOrder.state));
+  }
+
+  onClicDelete(orderId: number): void {
+    this.ordersService.delete(orderId).subscribe(console.log);
   }
 }

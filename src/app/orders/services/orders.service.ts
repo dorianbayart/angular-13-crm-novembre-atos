@@ -19,11 +19,19 @@ export class OrdersService {
     );
   }
 
-  update(order: Order): Observable<Order> {
-    return this.http.put<Order>(`${this.url}/orders/${order.id}`, order);
+  getById(id: Number): Observable<Order> {
+    return this.http.get<Order>(`${this.url}/orders/${id}`);
   }
 
   add(order: Order): Observable<any> {
     return this.http.post<any>(`${this.url}/orders`, order);
+  }
+
+  update(order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.url}/orders/${order.id}`, order);
+  }
+
+  delete(id: Number): Observable<any> {
+    return this.http.delete<any>(`${this.url}/orders/${id}`);
   }
 }

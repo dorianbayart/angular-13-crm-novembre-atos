@@ -26,7 +26,7 @@ export class FormOrderComponent implements OnInit {
       typePresta: [this.init.typePresta, Validators.required],
       client: [this.init.client, [Validators.required, Validators.minLength(2)]],
       comment: [this.init.comment],
-      id: [],
+      id: [this.init.id],
     });
   }
 

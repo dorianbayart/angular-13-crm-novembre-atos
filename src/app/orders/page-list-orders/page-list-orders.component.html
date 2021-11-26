@@ -1,6 +1,10 @@
 <app-template-full-width *ngIf="collection$ | async as collection" [titreAttribut]="titrePage">
   <app-table-light [headers]="headers">
     <tr *ngFor="let item of collection">
+      <td>
+        <app-icon-edit (click)="onClicGoEdit(item.id)" title="Edit"></app-icon-edit>
+        <app-icon-delete (click)="onClicDelete(item.id)" title="Delete"></app-icon-delete>
+      </td>
       <td>{{ item.client }}</td>
       <td>{{ item.tjmHt | currency }}</td>
       <td>{{ item.nbJours }}</td>
