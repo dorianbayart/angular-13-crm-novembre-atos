@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Order } from 'src/app/core/models/order';
 import { environment } from 'src/environments/environment';
 
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class OrdersService {
-  public collection$ = new BehaviorSubject<Order[]>([]);
+  private collection$ = new BehaviorSubject<Order[]>([]);
   private url = environment.urlApi;
 
   constructor(private http: HttpClient) {}
@@ -18,12 +18,16 @@ export class OrdersService {
       .get<Order[]>(`${this.url}/orders`)
       .pipe(
         map((tabJson) => {
-          return tabJson.map((objetOrder) => new Order(objetOrder));
+          return tabJson.map((object) => new Order(object));
         })
       )
-      .subscribe((listOrder: Order[]) => {
-        this.collection$.next(listOrder);
+      .subscribe((list: Order[]) => {
+        this.collection$.next(list);
       });
+  }
+
+  getAll(): BehaviorSubject<Order[]> {
+    return this.collection$;
   }
 
   getById(id: Number): Observable<Order> {

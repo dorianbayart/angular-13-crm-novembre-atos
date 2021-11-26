@@ -18,7 +18,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   stateOrder = StateOrder;
 
   constructor(private ordersService: OrdersService, private router: Router) {
-    this.titrePage = 'List Order';
+    this.titrePage = 'List Orders';
     this.headers = [
       'Action',
       'Client',
@@ -31,17 +31,13 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
       'State',
     ];
 
-    this.collection$ = this.ordersService.collection$;
+    this.collection$ = this.ordersService.getAll();
     this.ordersService.refresh();
   }
 
   ngOnInit(): void {}
 
   ngOnDestroy(): void {}
-
-  changeTitle(): void {
-    this.titrePage = Math.random().toString();
-  }
 
   onClicGoEdit(orderId: number): void {
     this.router.navigate(['orders', 'edit', orderId]);

@@ -1,1 +1,3 @@
-<p>page-add-client works!</p>
+<app-template-container title="Add Client">
+  <app-form-client [init]="initClient" (submitCustom)="onSubmitNewClient($event)"></app-form-client>
+</app-template-container>

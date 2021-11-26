@@ -1,1 +1,4 @@
-<p>page-edit-client works!</p>
+<app-template-container title="Edit Client">
+  <app-form-client *ngIf="client$ | async as client" [init]="client" (submitCustom)="onSubmitEditClient($event)"></app-form-client>
+</app-template-container>
+

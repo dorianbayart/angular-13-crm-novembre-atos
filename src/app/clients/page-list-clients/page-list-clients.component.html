@@ -1,1 +1,25 @@
-<p>page-list-clients works!</p>
+<app-template-full-width *ngIf="collection$ | async as collection" [titreAttribut]="titrePage">
+  <app-table-light [headers]="headers">
+    <tr *ngFor="let item of collection">
+      <td>
+        <app-icon-edit (click)="onClicGoEdit(item.id)" title="Edit"></app-icon-edit>
+        <app-icon-delete (click)="onClicDelete(item.id)" title="Delete"></app-icon-delete>
+      </td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.totalCaHt | currency }}</td>
+      <td>{{ item.tva }}%</td>
+      <td>{{ item | total : true | currency }}</td>
+      <td [appState]="item.state">
+        <select (change)="onChangeUpdateState(item, $event)">
+          <option
+            *ngFor="let state of stateClient | keyvalue"
+            [value]="state.value"
+            [selected]="state.value === item.state"
+          >{{ state.value }}</option>
+        </select>
+      </td>
+    </tr>
+  </app-table-light>
+  <app-btn label="Add Client" route="add"></app-btn>
+</app-template-full-width>
+

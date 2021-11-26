@@ -21,7 +21,7 @@ export class PageEditOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((data) => {
-      const orderId = Number(data.get('orderId'));
+      const orderId = Number(data.get('id'));
       this.order$ = this.ordersService.getById(orderId);
     });
 
@@ -29,7 +29,6 @@ export class PageEditOrderComponent implements OnInit {
   }
 
   onSubmitEditOrder(order: Order): void {
-    console.log(order);
     this.ordersService.update(order).subscribe(() => {
       this.router.navigate(['orders']);
     });

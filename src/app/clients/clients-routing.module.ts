@@ -7,7 +7,7 @@ import { PageListClientsComponent } from './page-list-clients/page-list-clients.
 const routes: Routes = [
   { path: '', component: PageListClientsComponent },
   { path: 'add', component: PageAddClientComponent },
-  { path: 'edit', component: PageEditClientComponent },
+  { path: 'edit/:id', component: PageEditClientComponent },
   { path: '**', redirectTo: '' },
 ];
 

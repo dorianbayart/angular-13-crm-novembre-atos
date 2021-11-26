@@ -18,7 +18,6 @@ export class PageAddOrderComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmitNewOrder(form: Order): void {
-    console.log('onSubmitNewOrder', form);
     this.ordersService.add(form).subscribe(() => {
       this.router.navigate(['orders']);
     });
