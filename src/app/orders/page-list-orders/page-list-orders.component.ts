@@ -1,7 +1,7 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../services/orders.service';
@@ -13,7 +13,7 @@ import { OrdersService } from '../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit, OnDestroy {
   titrePage!: string;
-  collection$!: Observable<Order[]>;
+  collection$!: BehaviorSubject<Order[]>;
   headers: string[];
   stateOrder = StateOrder;
 
@@ -32,6 +32,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
     ];
 
     this.collection$ = this.ordersService.collection$;
+    this.ordersService.refresh();
   }
 
   ngOnInit(): void {}

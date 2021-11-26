@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 import { Order } from 'src/app/core/models/order';
 import { environment } from 'src/environments/environment';
 
@@ -8,15 +8,22 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class OrdersService {
-  public collection$!: Observable<Order[]>;
+  public collection$ = new BehaviorSubject<Order[]>([]);
   private url = environment.urlApi;
 
-  constructor(private http: HttpClient) {
-    this.collection$ = this.http.get<Order[]>(`${this.url}/orders`).pipe(
-      map((tabJson) => {
-        return tabJson.map((objetOrder) => new Order(objetOrder));
-      })
-    );
+  constructor(private http: HttpClient) {}
+
+  refresh(): void {
+    this.http
+      .get<Order[]>(`${this.url}/orders`)
+      .pipe(
+        map((tabJson) => {
+          return tabJson.map((objetOrder) => new Order(objetOrder));
+        })
+      )
+      .subscribe((listOrder: Order[]) => {
+        this.collection$.next(listOrder);
+      });
   }
 
   getById(id: Number): Observable<Order> {
@@ -32,6 +39,8 @@ export class OrdersService {
   }
 
   delete(id: Number): Observable<any> {
-    return this.http.delete<any>(`${this.url}/orders/${id}`);
+    return this.http
+      .delete<any>(`${this.url}/orders/${id}`)
+      .pipe(tap(() => this.refresh()));
   }
 }
