@@ -4,6 +4,9 @@
             <td>
                 <app-icon-edit (click)="onClickGoEdit(item.id)"></app-icon-edit>
             </td>
+            <td>
+                <app-icon-delete (click)="onClickDeleteOrder(item.id)"></app-icon-delete>
+            </td>
             <td> {{ item.client }} </td>
             <td> {{ item.tjmHt | currency }} </td>
             <td> {{ item.nbJours }} </td>

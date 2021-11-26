@@ -1,6 +1,6 @@
 import { Component,OnDestroy,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrderService } from '../services/order.service';
@@ -15,7 +15,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   public headers: string[];
   public stateOrder = StateOrder;
   
-  public collection$!: Observable<Order[]>;
+  public collection$!: BehaviorSubject<Order[]>;
 
   constructor(
     private orderService: OrderService,
@@ -23,9 +23,10 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   ) {
     console.log('Page List ---New Instance');
     this.titrePage = 'List Order';
-    this.headers = ['', "Client","TjmHt","NbJours","Tva", "TotalHT", "TotalTTC", "Type","State"];
+    this.headers = ['', '', "Client","TjmHt","NbJours","Tva", "TotalHT", "TotalTTC", "Type","State"];
 
     this.collection$ = this.orderService.collection$;
+    this.orderService.refreshCollection();
   }
 
   ngOnInit(): void {
@@ -48,5 +49,12 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   public onClickGoEdit(orderId: number): void {
     this.router.navigate(['orders', 'edit', orderId]);
     // /orders/edit/{{id}}
+  }
+
+  public onClickDeleteOrder(orderId: number): void {
+    this.orderService.delete(orderId).subscribe((resp) => {
+      console.log(resp);
+      //Possibilité d'ajout de message d'info ici 
+    })
   }
 }

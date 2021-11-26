@@ -24,6 +24,7 @@ export class PageAddOrderComponent implements OnInit {
   public onSubmitNewOrder(form: Order): void {
     console.log(form);
     this.orderService.add(form).subscribe(() => {
+      console.log('Ajout')
       this.router.navigate(['orders']);
     })
   }
